@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -eo pipefail
-
+ import -P “$PASSWORD_SET_DURING_KEYCHAIN_EXPORT”
 gpg --quiet --batch --yes --decrypt --passphrase="itpath_2022" --output ./.github/secrets/match_AppStore_comtiagosantocalculatorIOS.mobileprovision.mobileprovision ./.github/secrets/match_AppStore_comtiagosantocalculatorIOS.mobileprovision.gpg
 gpg --quiet --batch --yes --decrypt --passphrase="itpath_2022" --output ./.github/secrets/Certificates.p12 ./.github/secrets/Certificates.p12.gpg
 
