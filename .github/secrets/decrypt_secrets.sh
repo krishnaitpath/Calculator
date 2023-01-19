@@ -1,5 +1,5 @@
 #!/bin/sh
-permissions: read-all|write-all
+
 
 set -eo pipefail
 
