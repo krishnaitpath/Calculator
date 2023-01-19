@@ -12,10 +12,12 @@ jobs:
         uses: actions/checkout@v1
       - name: Install gpg
         run: brew install gnupg
+      - name: Change Provisiong Profiles permissions
+        run: chmod +x ./.github/secrets/decrypt_secrets.sh
       - name: Setup provisioning profile
         env:
           IOS_KEYS: ${{ secrets.IOS_KEYS }}
-        run: sudo ./.github/secrets/decrypt_secrets.sh
+        run:  ./.github/secrets/decrypt_secrets.sh
       - name: Archiving project
         env:
           PR_NUMBER: $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
