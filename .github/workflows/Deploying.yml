@@ -14,16 +14,15 @@ jobs:
         run: brew install gnupg
       - name: Change Provisiong Profiles permissions
         run: chmod +x ./.github/secrets/decrypt_secrets.sh
-      - name: Setup provisioning profile
-        env:
-          IOS_KEYS: ${{ secrets.IOS_KEYS }}
-        run:  ./.github/secrets/decrypt_secrets.sh
+      
+      - name: Change Archive Profiles permissions
+        run: chmod +x ./.github/scripts/archive_app.sh
       - name: Archiving project
         env:
           PR_NUMBER: $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-        run: sudo ./.github/scripts/archive_app.sh
+        run:  ./.github/scripts/archive_app.sh
       - name: Exporting .ipa
-        run: sudo ./.github/scripts/export_ipa.sh
+        run:  ./.github/scripts/export_ipa.sh
       - name: Publishing app
         if: success()
         env:
